@@ -15,7 +15,7 @@
 
               <b-row>
                 <b-col cols="6">
-                  <b-button variant="primary" v-on:click="addToCart(item)"
+                  <b-button variant="primary" v-on:click="addToCart"
                     >Add To Cart</b-button
                   >
                 </b-col>
@@ -23,9 +23,7 @@
                   <p>${{ item.price }}</p>
                 </b-col>
                 <b-col cols="8">
-                  <b-button
-                    variant="danger"
-                    v-on:click="removeFromCart(item.id)"
+                  <b-button variant="danger" v-on:click="removeFromCart"
                     >Remove From Cart</b-button
                   >
                 </b-col>
@@ -41,11 +39,6 @@
 <script>
 import Card from "../components/Card.vue";
 export default {
-  props: {
-    cartItems: Object,
-    addToCart: Function,
-    removeFromCart: Function,
-  },
   data() {
     return {
       item: {},
@@ -68,6 +61,14 @@ export default {
       console.log(e);
     }
     this.isLoading = false;
+  },
+  methods: {
+    addToCart() {
+      this.$store.commit("addToCart", this.item);
+    },
+    removeFromCart() {
+      this.$store.commit("removeFromCart", this.item.id);
+    },
   },
 };
 </script>

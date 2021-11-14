@@ -12,16 +12,13 @@
 import Form from "../components/Form.vue";
 
 export default {
-  props: {
-    isLoggedIn: Boolean,
-  },
   data() {
     return {
       showNameField: true,
     };
   },
   beforeMount() {
-    if (this.isLoggedIn) this.$router.push("/users");
+    if (this.$store.state.isLoggedIn) this.$router.push("/users");
   },
   components: {
     Form,
@@ -43,7 +40,7 @@ export default {
 
         this.$router.push("/users");
 
-        this.$emit("toggle-isloggedIn");
+        this.$store.commit("toggleIsLoggedIn");
       } catch (e) {
         console.log(e);
       }

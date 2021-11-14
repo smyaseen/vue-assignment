@@ -18,7 +18,10 @@
 
       <b-navbar-nav class="mr-auto">
         <b-button v-on:click="goToCart" variant="primary"
-          >🛒 <span>{{ Object.keys(cartItems).length }}</span></b-button
+          >🛒
+          <span>{{
+            Object.keys(this.$store.state.cartItems).length
+          }}</span></b-button
         >
         <b-button class="logout-button" v-on:click="logout">Logout</b-button>
       </b-navbar-nav>
@@ -28,15 +31,12 @@
 
 <script>
 export default {
-  props: {
-    cartItems: Object,
-  },
   methods: {
     goToCart() {
       this.$router.push("/cart");
     },
     logout() {
-      this.$emit("toggle-isloggedIn");
+      this.$store.commit("toggleIsLoggedIn");
       this.$router.push("/");
     },
   },

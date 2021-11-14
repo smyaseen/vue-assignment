@@ -9,11 +9,8 @@
 import Table from "../components/Table.vue";
 
 export default {
-  props: {
-    isLoggedIn: Boolean,
-  },
   beforeMount() {
-    if (!this.isLoggedIn) this.$router.push("/");
+    if (!this.$store.state.isLoggedIn) this.$router.push("/");
   },
   data() {
     return {

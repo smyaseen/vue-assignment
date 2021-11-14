@@ -13,10 +13,6 @@
 import Table from "../components/Table.vue";
 
 export default {
-  props: {
-    isLoggedIn: Boolean,
-    cartItems: Object,
-  },
   data() {
     return {
       items: [],
@@ -24,21 +20,22 @@ export default {
     };
   },
   beforeMount() {
-    if (!this.isLoggedIn) this.$router.push("/");
+    if (!this.$store.state.isLoggedIn) this.$router.push("/");
   },
   mounted() {
     let price = 0;
-    Object.keys(this.cartItems).map((key) => {
-      delete this.cartItems[key]["rating"];
-      delete this.cartItems[key]["description"];
-      delete this.cartItems[key]["category"];
+    Object.keys(this.$store.state.cartItems).map((key) => {
+      delete this.$store.state.cartItems[key]["rating"];
+      delete this.$store.state.cartItems[key]["description"];
+      delete this.$store.state.cartItems[key]["category"];
 
-      this.cartItems[key]["Total Price"] =
-        this.cartItems[key].quantity * this.cartItems[key].price;
+      this.$store.state.cartItems[key]["Total Price"] =
+        this.$store.state.cartItems[key].quantity *
+        this.$store.state.cartItems[key].price;
 
-      price += this.cartItems[key]["Total Price"];
+      price += this.$store.state.cartItems[key]["Total Price"];
 
-      this.items.push(this.cartItems[key]);
+      this.items.push(this.$store.state.cartItems[key]);
 
       return key;
     });
@@ -48,9 +45,6 @@ export default {
 
   components: {
     Table,
-  },
-  methods: {
-    rowClickHandler(record) {},
   },
 };
 </script>

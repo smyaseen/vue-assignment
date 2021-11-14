@@ -11,11 +11,8 @@
 import Form from "../components/Form.vue";
 
 export default {
-  props: {
-    isLoggedIn: Boolean,
-  },
   beforeMount() {
-    if (this.isLoggedIn) this.$router.push("/users");
+    if (this.$store.state.isLoggedIn) this.$router.push("/users");
   },
   components: {
     Form,
@@ -34,7 +31,7 @@ export default {
         data.map((d) => {
           if (d.email === user.email && d.password === user.password) {
             this.$router.push("/users");
-            this.$emit("toggle-isloggedIn");
+            this.$store.commit("toggleIsLoggedIn");
             userFound = true;
           }
         });

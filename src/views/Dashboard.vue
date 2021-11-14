@@ -19,9 +19,6 @@
 import Card from "../components/Card.vue";
 
 export default {
-  props: {
-    isLoggedIn: Boolean,
-  },
   data() {
     return {
       items: [],
@@ -29,7 +26,7 @@ export default {
     };
   },
   beforeMount() {
-    if (!this.isLoggedIn) this.$router.push("/");
+    if (!this.$store.state.isLoggedIn) this.$router.push("/");
   },
   async mounted() {
     this.isLoading = true;
@@ -50,7 +47,6 @@ export default {
       this.$router.push({
         name: "product",
         params: {
-          item: { ...this.items[itemIndex] },
           id: itemIndex + 1,
         },
       });
