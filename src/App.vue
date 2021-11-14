@@ -1,28 +1,56 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div v-show="isLoggedIn">
+      <Navbar @toggle-isloggedIn="toggleLogin" :cartItems="cartItems" />
+    </div>
+    <router-view
+      :isLoggedIn="isLoggedIn"
+      @toggle-isloggedIn="toggleLogin"
+      :cartItems="cartItems"
+      :addToCart="addToCart"
+      :removeFromCart="removeFromCart"
+    ></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from "./components/Navbar";
 
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      isLoggedIn: true,
+      cartItems: {},
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    Navbar,
+  },
+  methods: {
+    toggleLogin() {
+      this.isLoggedIn = !this.isLoggedIn;
+    },
+    addToCart(item) {
+      if (this.cartItems[item.id]) {
+        this.cartItems[item.id] = {
+          ...this.cartItems[item.id],
+          quantity: this.cartItems[item.id].quantity + 1,
+        };
+      } else {
+        this.cartItems = {
+          ...this.cartItems,
+          [item.id]: { ...item, quantity: 1 },
+        };
+      }
+    },
+    removeFromCart(id) {
+      const updatedItems = { ...this.cartItems };
+      delete updatedItems[id];
+      this.cartItems = updatedItems;
+    },
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
