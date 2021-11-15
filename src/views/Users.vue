@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <h3>User Selected: {{ userSelected }}</h3>
-    <Modal title="Add User" @get-users="getUsers" />
+    <Modal title="Add User" @add-user="addUser" />
     <Table :items="items" :rowClickHandler="rowClickHandler" />
   </b-container>
 </template>
@@ -36,6 +36,21 @@ export default {
       const data = await res.json();
       data.map((user) => delete user["password"]);
       this.items = data;
+    },
+    async addUser(form) {
+      try {
+        await fetch(serverUrl, {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
+
+        this.getUsers();
+      } catch (e) {
+        console.log(e);
+      }
     },
     rowClickHandler(record) {
       this.userSelected = record.name;

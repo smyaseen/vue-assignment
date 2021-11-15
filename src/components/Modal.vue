@@ -74,25 +74,13 @@ export default {
   },
   methods: {
     async onSubmit(form) {
-      try {
-        await fetch(serverUrl, {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(form),
-        });
+      this.$emit("add-user", form);
 
-        this.form = {
-          name: "",
-          email: "",
-          password: "",
-        };
-
-        this.$emit("get-users");
-      } catch (e) {
-        console.log(e);
-      }
+      this.form = {
+        name: "",
+        email: "",
+        password: "",
+      };
     },
   },
 };
