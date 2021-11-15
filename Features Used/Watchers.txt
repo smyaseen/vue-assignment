@@ -1,0 +1,1 @@
+I've used Watcher in NavBar component to keep watch of changes in cart and display the total Items counter on cart button.

@@ -7,7 +7,7 @@ const vuexLocalStorage = new VuexPersist({
 
 export default {
   state: {
-    isLoggedIn: true,
+    isLoggedIn: false,
     cartItems: {},
   },
   plugins: [vuexLocalStorage.plugin],

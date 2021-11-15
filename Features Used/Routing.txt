@@ -1,0 +1,2 @@
+Routing has been used througout application, to make it a SPA. The Routing object, where it contains path is in src/router/index.js.
+Whereas configuration resides in App.vue.

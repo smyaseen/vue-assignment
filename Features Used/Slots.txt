@@ -1,0 +1,7 @@
+I've created a generic Form component, so that I can use it in Login and Signup without having to create page from scratch.
+The email and password are same in Form for both login and signup, but signup needs an extra field that is "name".
+So, I've used slot to add an extra field to Form from signup page.
+
+Slots Used In:
+
+Signup

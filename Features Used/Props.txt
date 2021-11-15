@@ -1,0 +1,8 @@
+I've used Props througout the application to pass the data from parent to child component.
+
+Props Used In:
+
+Card
+Form
+Modal
+Table

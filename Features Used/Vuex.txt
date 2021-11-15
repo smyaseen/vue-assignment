@@ -1,0 +1,4 @@
+I've used Vuex to fulfill the state management requiremnt. 2 states has been maintained in Vuex, isLoggedIn to check if user has permission to view certain page,
+and cartItems, so that I can persist the data and won't be affected by window refresh.
+
+The vuex state are maintained in src/store/index.js
