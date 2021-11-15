@@ -9,6 +9,7 @@
 <script>
 import Table from "../components/Table.vue";
 import Modal from "../components/Modal.vue";
+import { serverUrl } from "../scripts";
 
 export default {
   beforeMount() {
@@ -31,7 +32,7 @@ export default {
   },
   methods: {
     async getUsers() {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch(serverUrl);
       const data = await res.json();
       data.map((user) => delete user["password"]);
       this.items = data;

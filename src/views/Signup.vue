@@ -10,6 +10,7 @@
 
 <script>
 import Form from "../components/Form.vue";
+import { serverUrl } from "../scripts";
 
 export default {
   data() {
@@ -30,7 +31,7 @@ export default {
     async onSubmit(user, name) {
       user["name"] = name;
       try {
-        await fetch("http://localhost:5000/users", {
+        await fetch(serverUrl, {
           method: "POST",
           headers: {
             "Content-type": "application/json",

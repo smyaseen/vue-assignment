@@ -35,6 +35,7 @@ export default {
       delete this.$store.state.cartItems[key]["rating"];
       delete this.$store.state.cartItems[key]["description"];
       delete this.$store.state.cartItems[key]["category"];
+      delete this.$store.state.cartItems[key]["image"];
 
       this.$store.state.cartItems[key]["Total Price"] =
         this.$store.state.cartItems[key].quantity *

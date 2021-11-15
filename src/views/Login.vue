@@ -9,6 +9,7 @@
 
 <script>
 import Form from "../components/Form.vue";
+import { serverUrl } from "../scripts";
 
 export default {
   beforeMount() {
@@ -23,7 +24,7 @@ export default {
     },
     async onSubmit(user) {
       try {
-        const res = await fetch("http://localhost:5000/users");
+        const res = await fetch(serverUrl);
         const data = await res.json();
 
         let userFound = false;
