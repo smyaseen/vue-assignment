@@ -1,12 +1,14 @@
 <template>
   <b-container>
     <h3>User Selected: {{ userSelected }}</h3>
+    <Modal title="Add User" @get-users="getUsers" />
     <Table :items="items" :rowClickHandler="rowClickHandler" />
   </b-container>
 </template>
 
 <script>
 import Table from "../components/Table.vue";
+import Modal from "../components/Modal.vue";
 
 export default {
   beforeMount() {
@@ -20,18 +22,19 @@ export default {
   },
 
   async mounted() {
-    this.items = await this.getUsers();
+    this.getUsers();
   },
 
   components: {
     Table,
+    Modal,
   },
   methods: {
     async getUsers() {
       const res = await fetch("http://localhost:5000/users");
       const data = await res.json();
       data.map((user) => delete user["password"]);
-      return data;
+      this.items = data;
     },
     rowClickHandler(record) {
       this.userSelected = record.name;

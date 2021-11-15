@@ -2,7 +2,14 @@
   <b-container>
     <h1>CART</h1>
     <div v-if="items.length > 0">
-      <h3>Total Price: ${{ totalPrice }}</h3>
+      <b-row>
+        <b-col cols="6">
+          <h3>Total Price: ${{ totalPrice }}</h3>
+        </b-col>
+        <b-col cols="6">
+          <b-button variant="primary" v-on:click="checkout">Checkout</b-button>
+        </b-col>
+      </b-row>
       <Table :items="items" :rowClickHandler="rowClickHandler" />
     </div>
     <h3 v-else>Cart is Empty!</h3>
@@ -45,6 +52,13 @@ export default {
 
   components: {
     Table,
+  },
+  methods: {
+    checkout() {
+      this.$store.commit("checkout");
+      this.items = [];
+    },
+    rowClickHandler() {},
   },
 };
 </script>

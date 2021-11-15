@@ -11,9 +11,7 @@ export default {
     rowClickHandler: Function,
   },
   methods: {
-    myRowClickHandler() {
-      console.log("click");
-    },
+    myRowClickHandler() {},
   },
 };
 </script>

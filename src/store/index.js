@@ -16,7 +16,6 @@ export default {
       state.isLoggedIn = !state.isLoggedIn;
     },
     addToCart(state, item) {
-      console.log(item);
       if (state.cartItems[item.id]) {
         state.cartItems[item.id] = {
           ...state.cartItems[item.id],
@@ -33,6 +32,9 @@ export default {
       const updatedItems = { ...state.cartItems };
       delete updatedItems[id];
       state.cartItems = updatedItems;
+    },
+    checkout(state) {
+      state.cartItems = {};
     },
   },
 };
