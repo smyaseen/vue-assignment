@@ -18,10 +18,7 @@
 
       <b-navbar-nav class="mr-auto">
         <b-button v-on:click="goToCart" variant="primary"
-          >🛒
-          <span>{{
-            Object.keys(this.$store.state.cartItems).length
-          }}</span></b-button
+          >🛒 <span>{{ itemCount }}</span></b-button
         >
         <b-button class="logout-button" v-on:click="logout">Logout</b-button>
       </b-navbar-nav>
@@ -31,6 +28,21 @@
 
 <script>
 export default {
+  data() {
+    return {
+      itemCount: 0,
+    };
+  },
+  computed: {
+    count() {
+      return Object.keys(this.$store.state.cartItems).length;
+    },
+  },
+  watch: {
+    count: function (newCount) {
+      this.itemCount = newCount;
+    },
+  },
   methods: {
     goToCart() {
       this.$router.push("/cart");

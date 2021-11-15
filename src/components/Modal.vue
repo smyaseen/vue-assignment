@@ -54,6 +54,7 @@
 
 <script>
 import Form from "./Form.vue";
+import { serverUrl } from "../scripts";
 
 export default {
   props: {
@@ -74,7 +75,7 @@ export default {
   methods: {
     async onSubmit(form) {
       try {
-        await fetch("http://localhost:5000/users", {
+        await fetch(serverUrl, {
           method: "POST",
           headers: {
             "Content-type": "application/json",

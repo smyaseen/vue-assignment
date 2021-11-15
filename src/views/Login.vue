@@ -1,10 +1,11 @@
 <template>
   <Form
-    title="Login"
     secondaryButton="Register"
     :secondaryButtonAction="secondaryButtonAction"
     :onSubmit="onSubmit"
-  />
+  >
+    <template v-slot:title>Login</template>
+  </Form>
 </template>
 
 <script>
